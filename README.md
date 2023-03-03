@@ -23,6 +23,9 @@
    # configurer point entrer de l'application index.ts
    # installation http-error :Créez facilement des erreurs HTTP pour Express
    - npm install -d @types/http-errors
+   # res.headersSent :
+   - La propriété res.headersSent est une propriété booléenne qui indique si l'application a envoyé des en-têtes HTTP pour la réponse.
+   # creation de Route générale + création les route de auth
 
 
 
