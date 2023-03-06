@@ -2,8 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const authController_1 = require("../controllers/auth/authController");
+const validationUser_1 = require("../utils/validation/Authvalidation/validationUser");
 const router = (0, express_1.Router)();
-router.get('/register', authController_1.Register);
+router.post('/register', validationUser_1.registerValidation, authController_1.Register);
 router.get('login', authController_1.Login);
 router.get('/resitpassword', authController_1.Resitpassword);
 router.get('/forgrtpassword', authController_1.Forgetpassword);

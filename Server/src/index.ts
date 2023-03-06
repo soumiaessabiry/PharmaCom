@@ -1,25 +1,18 @@
-import express, { ErrorRequestHandler } from "express";
+import { errorHandler } from './middleware/errorHanlder';
+import express, { ErrorRequestHandler, urlencoded } from "express";
 import createHttpError from "http-errors";
 import authRoute from "../src/routes/authRoute"
 import mongoose from "mongoose";
 import { PORT,URL_DB } from './config/db';
 
 const app=express()
+app.use(express.json());
+app.use(urlencoded({extended:true}))
 app.use("/pharmacom/",authRoute)
 app.use(()=>{
     throw createHttpError(404,"note found page")
 })
-
-const errorHandler:ErrorRequestHandler=(err,req,res,next)=>{
-    if (res.headersSent) {
-        return next(err)
-    }
-    res
-    .status(err.statusCode||500)
-    .json({message:err.message||"An unkown error"}) 
-}
-
-app.use(errorHandler)
+app.use(errorHandler);
 
 mongoose
   .connect(URL_DB)
